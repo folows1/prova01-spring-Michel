@@ -7,7 +7,7 @@ import prova1.Michel.entity.AccountingEntity;
 @Data
 @NoArgsConstructor
 public class AccountingDTO {
-	private Long itemCode;
+	private long itemCode;
 	private String type;
 	private String description;
 	private float accValue;
