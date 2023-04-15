@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import prova1.Michel.entity.AccountingEntity;
 
 @Repository
-public interface AccountingRepository extends JpaRepository<AccountingEntity, Integer> {
+public interface AccountingRepository extends JpaRepository<AccountingEntity, Long> {
 }

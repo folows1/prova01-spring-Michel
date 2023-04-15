@@ -16,7 +16,7 @@ public class AccountingEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int itemCode;
+	private long itemCode;
 	private String type;
 	private String description;
 	private float accValue;
