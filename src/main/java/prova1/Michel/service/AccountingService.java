@@ -21,11 +21,9 @@ public class AccountingService {
 	}
 	
 	public AccountingEntity findById(Long itemCode) {
-		Optional<AccountingEntity> obj = repo.findById(itemCode);
-		
-		AccountingEntity entity = obj.orElseThrow(() -> new ObjectNotFoundException("Accounting not found!"));
-		
-		return entity;
+	    Optional<AccountingEntity> obj = repo.findById(itemCode);
+	    
+	    return obj.orElse(null);
 	}
 	
 	public void createAccounting(AccountingDTO acc) {
@@ -36,15 +34,17 @@ public class AccountingService {
 		return new AccountingEntity(acc.getItemCode(), acc.getType(), acc.getDescription(), acc.getAccValue(), acc.getProfit(), acc.getDateTime(), true);
 	}
 	
-	public void active(Long itemCode) {
-		Optional<AccountingEntity> obj = repo.findById(itemCode);
-		if (obj.isPresent()) {
+	public AccountingEntity active(Long itemCode) {
+	    Optional<AccountingEntity> obj = repo.findById(itemCode);
+	    
+	    if (obj.isPresent()) {
 	        AccountingEntity entity = obj.get();
-	        boolean status = entity.isActive();	        
+	        boolean status = entity.isActive();
 	        entity.setActive(!status);
 	        repo.save(entity);
+	        return entity;
 	    } else {
-	        throw new ObjectNotFoundException("itemCode não encontrado");
+	        return null;
 	    }
 	}
 }
